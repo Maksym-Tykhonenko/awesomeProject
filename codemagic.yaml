@@ -39,7 +39,7 @@ workflows:
           - name: Build ipa for distribution
             script: | 
               xcode-project build-ipa \
-                --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
+                --workspace "awesomeProject/ios/awesomeProject.xcworkspace" \
                 --scheme "awesomeProject"
         artifacts:
           - build/ios/ipa/*.ipa
