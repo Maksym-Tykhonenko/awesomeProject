@@ -38,13 +38,9 @@ workflows:
               agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
           - name: Build ipa for distribution
             script: | 
-              if [ ! -d "$XCODE_WORKSPACE" ]; then
-                echo "Error: Workspace $XCODE_WORKSPACE does not exist"
-                exit 1
-              fi
               xcode-project build-ipa \
-                --workspace "$XCODE_WORKSPACE" \
-                --scheme "$XCODE_SCHEME"
+                --workspace "awesomeProject/ios/awesomeProject.xcworkspace" \
+                --scheme "awesomeProject"
         artifacts:
           - build/ios/ipa/*.ipa
           - /tmp/xcodebuild_logs/*.log
