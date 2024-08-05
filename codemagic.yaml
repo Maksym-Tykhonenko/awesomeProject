@@ -38,17 +38,9 @@ workflows:
               agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
           - name: Build ipa for distribution
             script: | 
-              set -o pipefail && xcodebuild \
-            -workspace "awesomeProject/ios/awesomeProject.xcworkspace" \
-            -scheme "awesomeProject" \
-            -configuration AppStoreDistribution \
-            -allowProvisioningUpdates \
-            -archivePath $CM_BUILD_DIR/ios/build/awesomeProject.xcarchive \
-            clean archive | tee $HOME/Library/Logs/gym/xcodebuild.log
-          xcodebuild -exportArchive \
-            -archivePath $CM_BUILD_DIR/ios/build/awesomeProject.xcarchive \
-            -exportOptionsPlist $CM_BUILD_DIR/ios/ExportOptions.plist \
-            -exportPath $CM_BUILD_DIR/ios/build
+              xcode-project build-ipa \
+                --workspace "awesomeProject/ios/awesomeProject.xcworkspace" \
+                --scheme "awesomeProject"
         artifacts:
           - build/ios/ipa/*.ipa
           - /tmp/xcodebuild_logs/*.log
