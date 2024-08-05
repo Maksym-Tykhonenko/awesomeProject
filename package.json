@@ -2,6 +2,7 @@
   "name": "awesomeProject",
   "version": "0.0.1",
   "private": true,
+  "bundleIdentifier": "com.AwesomeProject.awesomeProject",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
