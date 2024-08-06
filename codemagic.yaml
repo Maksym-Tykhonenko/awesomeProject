@@ -41,6 +41,13 @@ workflows:
               xcode-project build-ipa \
                 --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
                 --scheme "$XCODE_SCHEME"
+        publishing: 
+          email:
+            recipients:
+              - muhammedmahmood12333@outlook.com
+            notify:
+              success: true
+              failure: false
         artifacts:
           - build/ios/ipa/*.ipa
           - /tmp/xcodebuild_logs/*.log
