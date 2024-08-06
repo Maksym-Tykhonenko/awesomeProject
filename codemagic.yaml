@@ -41,11 +41,6 @@ workflows:
               xcode-project build-ipa \
                 --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
                 --scheme "$XCODE_SCHEME"
-        artifacts:
-          - build/ios/ipa/*.ipa
-          - /tmp/xcodebuild_logs/*.log
-          - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-          - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
         publishing: 
           email:
             recipients:
@@ -55,3 +50,6 @@ workflows:
               failure: false
           app_store_connect:
             auth: integration
+            submit_to_testflight: true
+            beta_groups: # Specify the names of beta tester groups that will get access to the build once it has passed beta review.
+              - test
